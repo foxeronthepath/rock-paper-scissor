@@ -1,8 +1,12 @@
-# Rock Paper Scissors Game
+# 🎮 Rock Paper Scissors Game
 
 A modern, responsive web-based implementation of the classic Rock Paper Scissors game.
 
-## Features
+## 🎯 Play Now!
+
+**[Play the game here](https://foxeronthepath.github.io/rock-paper-scissor/)**
+
+## ✨ Features
 
 - Clean, modern UI with responsive design
 - Player vs. Computer gameplay
@@ -11,19 +15,19 @@ A modern, responsive web-based implementation of the classic Rock Paper Scissors
 - Round-by-round results
 - Game reset functionality
 
-## How to Play
+## 🎲 How to Play
 
 1. Open the game in your web browser
-2. Click on one of the three buttons (Rock, Paper, or Scissors) to make your choice
+2. Click on one of the three buttons (🪨 Rock, 📄 Paper, or ✂️ Scissors) to make your choice
 3. The computer will randomly select its choice
 4. The round winner is determined by the classic rules:
-   - Rock beats Scissors
-   - Scissors beats Paper
-   - Paper beats Rock
+   - 🪨 Rock beats ✂️ Scissors
+   - ✂️ Scissors beats 📄 Paper
+   - 📄 Paper beats 🪨 Rock
 5. The first player to reach 10 points wins the game
 6. Click "Play Again" to reset the game and start over
 
-## Installation
+## 💻 Installation
 
 No installation required! Simply download the project files and open `index.html` in your web browser.
 
@@ -34,17 +38,17 @@ cd rock-paper-scissor
 
 Then open `index.html` in your preferred browser.
 
-## Screenshots
+## 📸 Screenshots
 
 [Add screenshots here]
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 - HTML5
 - CSS3
 - JavaScript (ES6+)
 
-## Browser Compatibility
+## 🌐 Browser Compatibility
 
 The game works on all modern browsers including:
 - Chrome
@@ -52,6 +56,6 @@ The game works on all modern browsers including:
 - Safari
 - Edge
 
-## License
+## 📝 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
