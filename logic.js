@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-  let humanScore = 0;
+  // Game state variables
+  let playerScore = 0;
   let computerScore = 0;
   let currentRound = 1;
-  const TOTAL_ROUNDS = 10;
   let gameOver = false;
 
   // DOM elements
-  const humanScoreElement = document.getElementById('human-score');
+  const playerScoreElement = document.getElementById('human-score');
   const computerScoreElement = document.getElementById('computer-score');
   const roundIndicator = document.getElementById('round-indicator');
   const choicesIndicator = document.getElementById('choices-indicator');
@@ -14,55 +14,57 @@ document.addEventListener('DOMContentLoaded', () => {
   const finalResultElement = document.getElementById('final-result');
   const choiceButtons = document.querySelectorAll('.choice-btn');
 
+  // Get random computer choice
   function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];
-    const idx = Math.floor(Math.random() * choices.length);
-    return choices[idx];
+    return choices[Math.floor(Math.random() * 3)];
   }
 
-  function updateScoreDisplay() {
-    humanScoreElement.textContent = humanScore;
+  // Update the game display
+  function updateDisplay() {
+    playerScoreElement.textContent = playerScore;
     computerScoreElement.textContent = computerScore;
+    roundIndicator.textContent = `Round ${currentRound}`;
   }
 
-  function updateRoundDisplay() {
-    roundIndicator.textContent = `Round ${currentRound}`;gi
-  }
+  // Determine winner of a round
+  function playRound(playerChoice, computerChoice) {
+    choicesIndicator.textContent = `You: ${playerChoice} | Computer: ${computerChoice}`;
 
-  function playRound(humanChoice, computerChoice) {
-    // Update choices indicator
-    choicesIndicator.textContent = `You: ${humanChoice} | Computer: ${computerChoice}`;
-
-    if (humanChoice === computerChoice) {
-      resultElement.textContent = `It's a tie! You both chose ${humanChoice}`;
-      return 'tie';
+    if (playerChoice === computerChoice) {
+      resultElement.textContent = `Tie! Both chose ${playerChoice}`;
+      return;
     }
 
-    const playerWins =
-      (humanChoice === "rock" && computerChoice === "scissors") ||
-      (humanChoice === "paper" && computerChoice === "rock") ||
-      (humanChoice === "scissors" && computerChoice === "paper");
+    const winConditions = {
+      rock: "scissors",
+      scissors: "paper",
+      paper: "rock"
+    };
 
-    if (playerWins) {
-      humanScore++;
-      resultElement.textContent = `You win! ${humanChoice} beats ${computerChoice}`;
-      return 'player';
+    if (winConditions[playerChoice] === computerChoice) {
+      playerScore++;
+      resultElement.textContent = `You win! ${playerChoice} beats ${computerChoice}`;
     } else {
       computerScore++;
-      resultElement.textContent = `You lose! ${computerChoice} beats ${humanChoice}`;
-      return 'computer';
+      resultElement.textContent = `You lose! ${computerChoice} beats ${playerChoice}`;
     }
   }
 
+  // Check if game is over (first to 10 wins)
   function checkGameEnd() {
-    if (humanScore >=  10 || computerScore  >=  10) {
+    if (playerScore >= 10 || computerScore >= 10) {
       gameOver = true;
-      finalResultElement.textContent = getGameResult();
+      
+      // Display final result
+      if (playerScore > computerScore) {
+        finalResultElement.textContent = `You win the game ${playerScore}–${computerScore}!`;
+      } else {
+        finalResultElement.textContent = `You lose the game ${computerScore}–${playerScore}.`;
+      }
       
       // Disable choice buttons
-      choiceButtons.forEach(button => {
-        button.disabled = true;
-      });
+      choiceButtons.forEach(button => button.disabled = true);
       
       // Add reset button
       const resetButton = document.createElement('button');
@@ -77,37 +79,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function getGameResult() {
-    if (humanScore > computerScore) {
-      return `You win the game ${humanScore}–${computerScore}!`;
-    } else if (computerScore > humanScore) {
-      return `You lose the game ${computerScore}–${humanScore}.`;
-    } else {
-      return `It's a tie: ${humanScore}–${computerScore}.`;
-    }
-  }
-
+  // Reset the game
   function resetGame() {
-    humanScore = 0;
+    playerScore = 0;
     computerScore = 0;
     currentRound = 1;
     gameOver = false;
     
-    updateScoreDisplay();
-    updateRoundDisplay();
+    updateDisplay();
     
     resultElement.textContent = '';
     finalResultElement.textContent = '';
     choicesIndicator.textContent = 'Make your choice';
     
     // Enable choice buttons
-    choiceButtons.forEach(button => {
-      button.disabled = false;
-    });
+    choiceButtons.forEach(button => button.disabled = false);
     
     // Remove reset button
-    const resetButton = document.querySelector('.reset-btn');
-    if (resetButton) resetButton.remove();
+    document.querySelector('.reset-btn')?.remove();
   }
 
   // Add click event listeners to choice buttons
@@ -115,19 +104,17 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', () => {
       if (gameOver) return;
       
-      const humanChoice = button.id;
+      const playerChoice = button.id;
       const computerChoice = getComputerChoice();
       
-      playRound(humanChoice, computerChoice);
-      updateScoreDisplay();
+      playRound(playerChoice, computerChoice);
+      updateDisplay();
       
       currentRound++;
       checkGameEnd();
-      if (!gameOver) updateRoundDisplay();
     });
   });
 
   // Initialize game
-  updateScoreDisplay();
-  updateRoundDisplay();
+  updateDisplay();
 });
