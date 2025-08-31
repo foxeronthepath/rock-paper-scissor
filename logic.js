@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateRoundDisplay() {
-    roundIndicator.textContent = `Round ${currentRound} of ${TOTAL_ROUNDS}`;
+    roundIndicator.textContent = `Round ${currentRound}`;
   }
 
   function playRound(humanChoice, computerChoice) {
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function checkGameEnd() {
-    if (currentRound > TOTAL_ROUNDS) {
+    if (humanScore >=  10 || computerScore  >=  10) {
       gameOver = true;
       finalResultElement.textContent = getGameResult();
       
