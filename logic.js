@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateRoundDisplay() {
-    roundIndicator.textContent = `Round ${currentRound}`;
+    roundIndicator.textContent = `Round ${currentRound}`;gi
   }
 
   function playRound(humanChoice, computerChoice) {
