@@ -1,1 +1,49 @@
-<script src="logic.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Rock Paper Scissors</h1>
+    <div class="scores">
+      <div class="score-box">
+        <span class="score-label">Player</span>
+        <span id="human-score" class="score-value">0</span>
+      </div>
+      <div class="score-box">
+        <span class="score-label">Computer</span>
+        <span id="computer-score" class="score-value">0</span>
+      </div>
+    </div>
+    
+    <div class="round-info">
+      <div id="round-indicator" class="round-indicator">Round 1 of 5</div>
+      <div id="choices-indicator" class="choices-indicator">Make your choice</div>
+    </div>
+    
+    <div class="choices">
+      <button class="choice-btn" id="rock">
+        <div class="choice-icon">🪨</div>
+        <div class="choice-text">Rock</div>
+      </button>
+      <button class="choice-btn" id="paper">
+        <div class="choice-icon">📄</div>
+        <div class="choice-text">Paper</div>
+      </button>
+      <button class="choice-btn" id="scissors">
+        <div class="choice-icon">✂️</div>
+        <div class="choice-text">Scissors</div>
+      </button>
+    </div>
+    
+    <div id="result" class="result"></div>
+    <div id="final-result" class="final-result"></div>
+  </div>
+  
+  <script src="logic.js"></script>
+</body>
+</html>
