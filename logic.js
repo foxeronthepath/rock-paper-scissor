@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (playerChoice === computerChoice) {
       resultElement.textContent = `Tie! Both chose ${playerChoice}`;
+      resultElement.style.color = '#f59e0b'; // Orange for tie
       return;
     }
 
@@ -45,9 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (winConditions[playerChoice] === computerChoice) {
       playerScore++;
       resultElement.textContent = `You win! ${playerChoice} beats ${computerChoice}`;
+      resultElement.style.color = '#10b981'; // Green for win
     } else {
       computerScore++;
       resultElement.textContent = `You lose! ${computerChoice} beats ${playerChoice}`;
+      resultElement.style.color = '#ef4444'; // Red for loss
     }
   }
 
@@ -59,8 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
       // Display final result
       if (playerScore > computerScore) {
         finalResultElement.textContent = `You win the game ${playerScore}–${computerScore}!`;
+        finalResultElement.style.color = '#10b981'; // Green for winning the game
       } else {
         finalResultElement.textContent = `You lose the game ${computerScore}–${playerScore}.`;
+        finalResultElement.style.color = '#ef4444'; // Red for losing the game
       }
       
       // Disable choice buttons
@@ -89,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateDisplay();
     
     resultElement.textContent = '';
+    resultElement.style.color = '#334155'; // Reset to default text color
     finalResultElement.textContent = '';
     choicesIndicator.textContent = 'Make your choice';
     
